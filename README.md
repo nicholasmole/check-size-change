@@ -6,7 +6,7 @@ React Parent Wrapper Component that checks if the Screen Size has change
 
 Simply install the application
 ```
-npm i @nmole/checkSizeChange
+npm i @nicholasmole/checkSizeChange
 
 ```
 
