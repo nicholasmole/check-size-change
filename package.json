@@ -1,0 +1,25 @@
+{
+  "name": "@nmole/checkSizeChange",
+  "version": "0.1.0",
+  "description": "Check if the Window Size has change",
+  "main": "build/index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "webpack --watch",
+    "build": "webpack"
+  },
+  "dependencies": {},
+  "author": {
+    "name": "Nicholas Mole"
+  },
+  "devDependencies": {
+    "babel-cli": "^6.24.1",
+    "babel-core": "^6.24.1",
+    "babel-loader": "^7.0.0",
+    "babel-plugin-transform-object-rest-spread": "^6.23.0",
+    "babel-plugin-transform-react-jsx": "^6.24.1",
+    "babel-preset-env": "^1.5.1",
+    "react": "^15.6.2",
+    "webpack": "^2.7.0"
+  }
+}
