@@ -1,5 +1,5 @@
 {
-  "name": "@nmole/checkSizeChange",
+  "name": "@nmole/check-size-change",
   "version": "0.1.0",
   "description": "Check if the Window Size has change",
   "main": "build/index.js",
@@ -15,7 +15,7 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/nicholasmole/checkSizeChange"
+    "url": "https://github.com/nicholasmole/check-size-change"
   },
   "devDependencies": {
     "babel-cli": "^6.24.1",

@@ -223,7 +223,7 @@ Object.defineProperty(exports, "__esModule", {
 
 var _checkSizeChange = __webpack_require__(0);
 
-Object.defineProperty(exports, 'checkSizeChange', {
+Object.defineProperty(exports, 'check-size-change', {
   enumerable: true,
   get: function get() {
     return _checkSizeChange;
