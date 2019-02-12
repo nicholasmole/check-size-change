@@ -131,6 +131,7 @@ function checkSizeChange(InputComponent) {
 			}
 			_this.isSmallerThanTestSize = _this.isSmallerThanTestSize.bind(_this);
 			_this.onResize = _this.onResize.bind(_this);
+			_this.passSelfRefForOnResize = _this.passSelfRefForOnResize.bind(_this);
 			_this.isTabletLimit = _this.isTabletLimit.bind(_this);
 			_this.isMobileLimit = _this.isMobileLimit.bind(_this);
 			return _this;
@@ -143,49 +144,63 @@ function checkSizeChange(InputComponent) {
 			}
 		}, {
 			key: 'onResize',
-			value: function onResize() {
+			value: function onResize(self) {
 				var _this2 = this;
 
-				var tabletBreakSize = this.isSmallerThanTestSize(window.innerWidth, tablet);
-				if (tabletBreakSize !== this.state.tabletLimitReached) {
-					this.setState({
-						isTabletLimit: tabletBreakSize
-					});
-				}
-				var mobileBreakSize = this.isSmallerThanTestSize(window.innerWidth, mobile);
-				if (mobileBreakSize !== this.state.mobileLimitReached) {
-					this.setState({
-						isMobileLimit: mobileBreakSize
-					});
-				}
-
-				var extras = this.state.extraSizes;
-
-				var _loop = function _loop(i) {
-					var testSize = _this2.isSmallerThanTestSize(window.innerWidth, extras[i].limit);
-
-					if (testSize !== extras[i].prop) {
-						var _prop = function _prop() {
-							_this2.state[extras[i].prop] = testSize;
-						};
-						_this2.setState(_prop());
+				setTimeout(function () {
+					if (_this2) self = _this2;
+					var tabletBreakSize = self.isSmallerThanTestSize(window.innerWidth, tablet);
+					if (tabletBreakSize !== self.state.tabletLimitReached) {
+						self.setState({
+							isTabletLimit: tabletBreakSize
+						});
 					}
-				};
+					var mobileBreakSize = self.isSmallerThanTestSize(window.innerWidth, mobile);
+					if (mobileBreakSize !== self.state.mobileLimitReached) {
+						self.setState({
+							isMobileLimit: mobileBreakSize
+						});
+					}
 
-				for (var i = 0; i < extras.length; i++) {
-					_loop(i);
-				}
+					var extras = self.state.extraSizes;
+
+					var _loop = function _loop(i) {
+						var testSize = self.isSmallerThanTestSize(window.innerWidth, extras[i].limit);
+
+						if (testSize !== extras[i].prop) {
+							var _prop = function _prop() {
+								self.state[extras[i].prop] = testSize;
+							};
+							self.setState(_prop());
+						}
+					};
+
+					for (var i = 0; i < extras.length; i++) {
+						_loop(i);
+					}
+				}, 150);
+			}
+		}, {
+			key: 'passSelfRefForOnResize',
+			value: function passSelfRefForOnResize(e, self) {
+				e = e || window.event;
+				self.onResize(self);
 			}
 		}, {
 			key: 'componentDidMount',
 			value: function componentDidMount() {
-				window.addEventListener('resize', this.onResize);
+				var _this3 = this;
+
+				window.addEventListener('resize', function (e) {
+					return _this3.passSelfRefForOnResize(e, _this3);
+				});
 				this.onResize();
 			}
 		}, {
 			key: 'componentWillUnmount',
 			value: function componentWillUnmount() {
 				window.removeEventListener('resize', this.onResize);
+				window.removeEventListener('resize', this.passSelfRefForOnResize);
 			}
 		}, {
 			key: 'isTabletLimit',
@@ -208,8 +223,6 @@ function checkSizeChange(InputComponent) {
 	}(_react.Component);
 }
 
-exports.default = checkSizeChange;
-
 /***/ }),
 /* 1 */
 /***/ (function(module, exports, __webpack_require__) {
@@ -218,19 +231,18 @@ exports.default = checkSizeChange;
 
 
 Object.defineProperty(exports, "__esModule", {
-  value: true
+	value: true
 });
 
 var _checkSizeChange = __webpack_require__(0);
 
-Object.defineProperty(exports, 'check-size-change', {
-  enumerable: true,
-  get: function get() {
-    return _checkSizeChange;
-  }
+Object.defineProperty(exports, 'checkSizeChange', {
+	enumerable: true,
+	get: function get() {
+		return _checkSizeChange.checkSizeChange;
+	}
 });
 
-module.exports = _checkSizeChange;
 /***/ }),
 /* 2 */
 /***/ (function(module, exports) {

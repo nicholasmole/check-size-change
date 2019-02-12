@@ -7,7 +7,8 @@ Object.defineProperty(exports, "__esModule", {
 
 var _checkSizeChange = require('./build');
 
-Object.defineProperty(exports, 'check-size-change', {
+// Object.defineProperty(exports, 'check-size-change', {
+Object.defineProperty(exports, 'checkSizeChange', {
   enumerable: true,
   get: function get() {
     return _checkSizeChange;
